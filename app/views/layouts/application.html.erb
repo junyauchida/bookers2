@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>  <!-- application.html.erbに書けば全部のページに反映される -->
+
+    <nav class="nav-bar">
+      <%if user_signed_in? %> <!-- もしサインインしていたらhome、ログアウトを表示 -->
+
+      <li><%= link_to 'home(マイページ)', user_path(current_user.id) %></li>
+
+      <li>users</li>
+
+      <li>books</li>
+
+      <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+      <!-- deviseのログアウト機能　この一文だけでいい -->
+
+      <% else %> <!-- もしサインインしていないならhome、ログアウトを表示させない -->
+      <% end %>
+    </nav>
+
+    <%= yield %>
+  </body>
+</html>
