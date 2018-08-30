@@ -1,1 +1,70 @@
-<h1>books#show</h1>
+
+<div class="container">
+		<div class="row">
+			<div class="col-lg-4">
+					<h1>books#show</h1>
+					<h3>new book</h3>
+					<%= form_for(@book) do |f| %>
+					<!-- 空の箱である@bookfをfとする → form_forがcreateアクションへ値を渡す -->
+
+					<h4>title</h4>
+					<%= f.text_field :title ,class:"book_title" %>  <!-- fieldは1行の空欄 --> <!-- f は @bookf -->
+
+					<h4>opinion</h4>
+					<%= f.text_area :opinion ,class:"book_body" %>  <!-- areaは複数行の空欄 -->
+
+					<%= f.submit 'create book' %>
+
+					<% end %>
+
+						<% if flash[:notice] %>
+						<p><%= flash[:notice] %></p>
+
+						<% end %>
+
+			</div>
+
+			<div class="col-lg-8">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>image</th>
+							<th>title</th>
+							<th>opinion</th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr>
+							<td>
+								<%= link_to user_path(@bookf.user.id) ,class:"user_#{@bookf.user.id}" do %>
+								<!-- 画像にリンクをつける　attachmentはaタグで囲まれたimgタグになる -->
+								<!-- book.の中からuse.idを取得する　親と子の関係　このbookは|book| -->
+								 <%= attachment_image_tag current_user, :image, :fill, 50, 50,
+							     format: 'jpeg' , fallback: "no_image.jpg"%>
+							     <!--  -->
+							     <% end %>
+							</td>
+							<td><%= @bookf.title %></td>
+							<td><%= @bookf.opinion %></td>
+
+							<% if current_user == @bookf.user %>
+								<td><%= link_to "edit", edit_book_path(@bookf) ,class:"edit_book_#{@bookf.id}" %></td>
+								<!-- (:id)ではない　(:id)は主にコントローラで書く　@bookfはidを含んだデータを持っている-->
+								<td><%= link_to "destroy" , book_path(@bookf) ,class:"destroy_book_#{@bookf.id}" , method: :delete ,
+								# (book)でエラー　正しくは(@bookf)
+								"data-confirm" => "本当に削除しますか？" %></td>
+							<% end %>
+							<!--link_to "文字列" , url , method: :'delete' -->
+							<!-- destroyアクションへのリンク -->
+						</tr>
+					</thead>
+				</table>
+			</div>
+
+		</div>
+</div>
+
+
+
+
+

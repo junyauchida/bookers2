@@ -1,2 +1,10 @@
 <h1>Books#edit</h1>
-<p>Find me in app/views/books/edit.html.erb</p>
+
+<%= form_for(@bookf) do |f| %>
+    <h4>title</h4>
+    <%= f.text_field :title %>
+    <h4>opinion</h4>
+    <%= f.text_area :opinion %>
+    <%= f.submit '保存' %>
+    <h3><%= link_to "back", books_path ,class:"back" %></h3>
+<% end %>

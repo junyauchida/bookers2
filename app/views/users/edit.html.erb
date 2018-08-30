@@ -1,2 +1,26 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+
+<% if @user.errors.any? %> <!-- 以下エラーメッセージのテンプレ　tech参照 -->
+<div id="error_explanation" class="alert alert-danger">
+	<ul>
+		<% @user.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
+
+<%= form_for(@user) do |f| %>
+
+	<h1>name</h1>
+    <%= f.text_field :name ,class:"name" %>
+
+	<h1>image</h1>
+    <%= f.attachment_field :image ,class:"user_image" %> <!-- refileのattachmentメソッド -->
+
+	<h1>introduction</h1>
+    <%= f.text_area :intro ,class:"introduction" %>
+
+	<%= f.submit 'update user' %>
+
+	<% end %>

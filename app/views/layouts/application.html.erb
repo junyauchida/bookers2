@@ -11,21 +11,48 @@
 
   <body>  <!-- application.html.erbに書けば全部のページに反映される -->
 
-    <nav class="nav-bar">
-      <%if user_signed_in? %> <!-- もしサインインしていたらhome、ログアウトを表示 -->
+<!-- ここから -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">bookers</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarEexample1">
+      <ul class="nav navbar-nav">
+<!-- ここまでbootstrap3/日本語リファレンス/コンポーネント/ナビゲーションバー -->
 
-      <li><%= link_to 'home(マイページ)', user_path(current_user.id) %></li>
+        <%if user_signed_in? %> <!-- もしサインインしていたら以下を表示 -->
+          <li><%= link_to 'ホーム', user_path(current_user.id) ,class:"home"%></li>
+          <!-- ??? -->
+          <li><%= link_to "user一覧", users_path ,class:"users" %></li>
 
-      <li>users</li>
+          <li><%= link_to "book一覧", books_path ,class:"books" %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path,
+           method: :delete, :class => 'navbar-link' ,class:"logout" %></li>
+           <!-- deviseのログアウト機能　この一文だけでいい -->
 
-      <li>books</li>
+        <% else %> <!-- もしサインインしていないなら上記を表示させず以下を表示 -->
+          <li><%= link_to 'トップ', root_path %></li>
 
-      <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
-      <!-- deviseのログアウト機能　この一文だけでいい -->
+          <li><%= link_to 'アバウト', about_path ,class:"about" %></li>
+          <!-- リンク正しくない -->
+          <li><%= link_to 'サインアップ', new_user_registration_path %></li>
 
-      <% else %> <!-- もしサインインしていないならhome、ログアウトを表示させない -->
-      <% end %>
-    </nav>
+          <li><%= link_to 'ログイン', users_path ,class:"sign_in" %></li>
+        <% end %>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
 
     <%= yield %>
   </body>

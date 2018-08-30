@@ -1,9 +1,78 @@
-<h1>books-show マイページ</h1>
+
+
+<div class="container">
+		<div class="row">
+			<div class="col-lg-4">
+					<h1>users#show</h1>
+
+					<h3>user info</h3>
+						<%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg' , fallback: "no_image.jpg"%>
+						<!-- refileのattachment_image_tag -->
+						<!-- 画像の登録がない時に保存したno_image.jpgを表示 -->
+
+						<h3>name</h3>
+						<h3><%= @user.name %></h3>
+						<!-- -->
+
+						<h3>introduction</h3>
+						<h3><%= @user.intro %></h3>
+						<!--  -->
+
+						<h3><%= link_to "edit", edit_user_path(@user) ,class:"edit_user_#{@user.id}" %></h3>
+						<!-- link_to "文字列" , action名_controller名_path-->
 
 
 
-<h3>user info</h3>
+					<h3>new book</h3>
+					<%= form_for(@book) do |f| %>
+					<!-- 空の箱である@bookをfとする → form_forがcreateアクションへ値を渡す -->
 
-<h3>new book</h3>
+					<h4>title</h4>
+					<%= f.text_field :title ,class:"book_title" %>  <!-- fieldは1行の空欄 --> <!-- f は @book -->
 
-<h3>books</h3>
+					<h4>opinion</h4>
+					<%= f.text_area :opinion ,class:"book_body" %>  <!-- areaは複数行の空欄 -->
+
+					<%= f.submit 'create book' %>
+
+					<% end %>
+			</div>
+
+			<h1>books</h1>
+			<div class="col-lg-8">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>image</th> <!-- メニュー1 -->
+							<th>title</th> <!-- メニュー2 -->
+							<th>opinion</th> <!-- メニュー3 -->
+						</tr>
+
+						<% @books.each do |book| %>
+						<tr>
+							<td>
+							  <%= link_to user_path(book.user.id),class:"user_#{book.user.id}" do  %>
+							  <!-- 画像にリンクをつける　attachmentはaタグで囲まれたimgタグになる -->
+							  <!-- book.の中からuse.idを取得する　親と子の関係　このbookは|book| -->
+								 <%= attachment_image_tag @user, :image, :fill, 50, 50,
+							     format: 'jpeg' , fallback: "no_image.jpg", size: '50x50' %>
+							     <!--  -->
+							  <% end %>
+							</td>
+
+							<td>
+							  <%= link_to book_path(book.id),class:"book_#{book.id}" do  %>
+							     <%= book.title %>
+						      <% end %>
+							</td>
+
+							<td><%= book.opinion %></td>
+						</tr>
+						<% end %>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+

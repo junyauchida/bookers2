@@ -1,1 +1,79 @@
-<h1>index</h1>
+
+
+<div class="container">
+		<div class="row">
+			<div class="col-lg-4">
+					<h1>users#info</h1>
+
+					<h3></h3>
+						<%= attachment_image_tag current_user, :image, :fill, 100, 100, format: 'jpeg' , fallback: "no_image.jpg"%>
+						<!-- refileのattachment_image_tag -->
+						<!-- 画像の登録がない時に保存したno_image.jpgを表示 -->
+
+						<h3>name</h3>
+						<h3><%= current_user.name %></h3>
+						<!-- 現在ログインしているユーザーだけのデータを取得するdeviseのメソッド -->
+
+						<h3>introduction</h3>
+						<h3><%= current_user.intro %></h3>
+						<!-- deviseのメソッド　current_user -->
+
+						<h3><%= link_to "edit", edit_user_path(current_user) ,class:"edit_user_#{current_user.id}" %></h3>
+						<!-- link_to "文字列" , action名_controller名_path-->
+
+					<h3>new book</h3>
+					<%= form_for(@book) do |f| %>
+					<!-- 空の箱である@bookをfとする → form_forがcreateアクションへ値を渡す -->
+
+					<h4>title</h4>
+					<%= f.text_field :title ,class:"book_title" %>  <!-- fieldは1行の空欄 --> <!-- f は @book -->
+
+					<h4>opinion</h4>
+					<%= f.text_area :opinion ,class:"book_body" %>  <!-- areaは複数行の空欄 -->
+
+					<%= f.submit 'create book' %>
+
+					<% end %>
+			</div>
+
+			<h1>users#index</h1>
+			<div class="col-lg-8">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>image</th> <!-- メニュー1 -->
+							<th>name</th> <!-- メニュー2 -->
+							<th></th> <!-- メニュー3 -->
+						</tr>
+
+						<% @users.each do |user| %>
+						<tr>
+							<td>
+							  <%= link_to user_path(user.id),class:"user_#{user.id}" do  %>
+							  <!-- 画像にリンクをつける　attachmentはaタグで囲まれたimgタグになる -->
+							  <!-- book.の中からuse.idを取得する　親と子の関係　このbookは|book| -->
+								 <%= attachment_image_tag user, :image,
+							     format: 'jpeg' , fallback: "no_image.jpg", size: '50x50' %>
+							     <!--  -->
+							  <% end %>
+							</td>
+
+							<td>
+							  <%= user.name %>
+							  <!-- ユーザーidから名前を取得 -->
+							</td>
+
+							<td>
+								<%= link_to "show", user_path(user) ,class:"user_#{user.id}" %>
+								<!-- (user.id) -->
+								<!-- 行き先　各ユーザーのmyページ　users-show -->
+								<!--  -->
+							</td>
+						</tr>
+						<% end %>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
