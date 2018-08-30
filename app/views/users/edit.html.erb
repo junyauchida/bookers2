@@ -13,13 +13,13 @@
 <%= form_for(@user) do |f| %>
 
 	<h1>name</h1>
-    <%= f.text_field :name ,class:"name" %>
+    <%= f.text_field :name ,class: "name" %>
 
 	<h1>image</h1>
-    <%= f.attachment_field :image ,class:"user_image" %> <!-- refileのattachmentメソッド -->
+    <%= f.attachment_field :image ,class: "user_image" %> <!-- refileのattachmentメソッド -->
 
 	<h1>introduction</h1>
-    <%= f.text_area :intro ,class:"introduction" %>
+    <%= f.text_area :intro ,class: "introduction" %>
 
 	<%= f.submit 'update user' %>
 

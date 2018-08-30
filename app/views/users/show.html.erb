@@ -18,7 +18,7 @@
 						<h3><%= @user.intro %></h3>
 						<!--  -->
 
-						<h3><%= link_to "edit", edit_user_path(@user) ,class:"edit_user_#{@user.id}" %></h3>
+						<h3><%= link_to "edit", edit_user_path(@user) ,class: "edit_user_#{@user.id}" %></h3>
 						<!-- link_to "文字列" , action名_controller名_path-->
 
 
@@ -28,10 +28,10 @@
 					<!-- 空の箱である@bookをfとする → form_forがcreateアクションへ値を渡す -->
 
 					<h4>title</h4>
-					<%= f.text_field :title ,class:"book_title" %>  <!-- fieldは1行の空欄 --> <!-- f は @book -->
+					<%= f.text_field :title ,class: "book_title" %>  <!-- fieldは1行の空欄 --> <!-- f は @book -->
 
 					<h4>opinion</h4>
-					<%= f.text_area :opinion ,class:"book_body" %>  <!-- areaは複数行の空欄 -->
+					<%= f.text_area :opinion ,class: "book_body" %>  <!-- areaは複数行の空欄 -->
 
 					<%= f.submit 'create book' %>
 
@@ -51,7 +51,7 @@
 						<% @books.each do |book| %>
 						<tr>
 							<td>
-							  <%= link_to user_path(book.user.id),class:"user_#{book.user.id}" do  %>
+							  <%= link_to user_path(book.user.id),class: "user_#{book.user.id}" do  %>
 							  <!-- 画像にリンクをつける　attachmentはaタグで囲まれたimgタグになる -->
 							  <!-- book.の中からuse.idを取得する　親と子の関係　このbookは|book| -->
 								 <%= attachment_image_tag @user, :image, :fill, 50, 50,
@@ -61,7 +61,7 @@
 							</td>
 
 							<td>
-							  <%= link_to book_path(book.id),class:"book_#{book.id}" do  %>
+							  <%= link_to book_path(book.id),class: "book_#{book.id}" do  %>
 							     <%= book.title %>
 						      <% end %>
 							</td>

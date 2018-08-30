@@ -18,7 +18,7 @@
 						<h3><%= current_user.intro %></h3>
 						<!-- deviseのメソッド　current_user -->
 
-						<h3><%= link_to "edit", edit_user_path(current_user) ,class:"edit_user_#{current_user.id}" %></h3>
+						<h3><%= link_to "edit", edit_user_path(current_user) ,class: "edit_user_#{current_user.id}" %></h3>
 						<!-- link_to "文字列" , action名_controller名_path-->
 
 					<h3>new book</h3>
@@ -26,10 +26,10 @@
 					<!-- 空の箱である@bookをfとする → form_forがcreateアクションへ値を渡す -->
 
 					<h4>title</h4>
-					<%= f.text_field :title ,class:"book_title" %>  <!-- fieldは1行の空欄 --> <!-- f は @book -->
+					<%= f.text_field :title ,class: "book_title" %>  <!-- fieldは1行の空欄 --> <!-- f は @book -->
 
 					<h4>opinion</h4>
-					<%= f.text_area :opinion ,class:"book_body" %>  <!-- areaは複数行の空欄 -->
+					<%= f.text_area :opinion ,class: "book_body" %>  <!-- areaは複数行の空欄 -->
 
 					<%= f.submit 'create book' %>
 
@@ -49,7 +49,7 @@
 						<% @users.each do |user| %>
 						<tr>
 							<td>
-							  <%= link_to user_path(user.id),class:"user_#{user.id}" do  %>
+							  <%= link_to user_path(user.id),class: "user_#{user.id}" do  %>
 							  <!-- 画像にリンクをつける　attachmentはaタグで囲まれたimgタグになる -->
 							  <!-- book.の中からuse.idを取得する　親と子の関係　このbookは|book| -->
 								 <%= attachment_image_tag user, :image,
@@ -64,7 +64,7 @@
 							</td>
 
 							<td>
-								<%= link_to "show", user_path(user) ,class:"user_#{user.id}" %>
+								<%= link_to "show", user_path(user) ,class: "user_#{user.id}" %>
 								<!-- (user.id) -->
 								<!-- 行き先　各ユーザーのmyページ　users-show -->
 								<!--  -->

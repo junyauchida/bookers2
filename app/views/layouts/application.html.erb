@@ -28,23 +28,23 @@
 <!-- ここまでbootstrap3/日本語リファレンス/コンポーネント/ナビゲーションバー -->
 
         <%if user_signed_in? %> <!-- もしサインインしていたら以下を表示 -->
-          <li><%= link_to 'ホーム', user_path(current_user.id) ,class:"home"%></li>
+          <li><%= link_to 'ホーム', user_path(current_user.id) ,class: "home"%></li>
           <!-- ??? -->
-          <li><%= link_to "user一覧", users_path ,class:"users" %></li>
+          <li><%= link_to "user一覧", users_path ,class: "users" %></li>
 
-          <li><%= link_to "book一覧", books_path ,class:"books" %></li>
+          <li><%= link_to "book一覧", books_path ,class: "books" %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path,
-           method: :delete, :class => 'navbar-link' ,class:"logout" %></li>
+           method: :delete, :class => 'navbar-link' ,class: "logout" %></li>
            <!-- deviseのログアウト機能　この一文だけでいい -->
 
         <% else %> <!-- もしサインインしていないなら上記を表示させず以下を表示 -->
           <li><%= link_to 'トップ', root_path %></li>
 
-          <li><%= link_to 'アバウト', about_path ,class:"about" %></li>
+          <li><%= link_to 'アバウト', about_path ,class: "about" %></li>
           <!-- リンク正しくない -->
           <li><%= link_to 'サインアップ', new_user_registration_path %></li>
 
-          <li><%= link_to 'ログイン', users_path ,class:"sign_in" %></li>
+          <li><%= link_to 'ログイン', users_path ,class: "sign_in" %></li>
         <% end %>
 
       </ul>
