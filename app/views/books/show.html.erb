@@ -39,8 +39,8 @@
 								<%= link_to user_path(@bookf.user.id) ,class: "user_#{@bookf.user.id}" do %>
 								<!-- 画像にリンクをつける　attachmentはaタグで囲まれたimgタグになる -->
 								<!-- book.の中からuse.idを取得する　親と子の関係　このbookは|book| -->
-								 <%= attachment_image_tag current_user, :image, :fill, 50, 50,
-							     format: 'jpeg' , fallback: "no_image.jpg"%>
+								 <%= attachment_image_tag @booksf_user, :image, :fill, 50, 50,
+							     format: 'jpeg' , fallback: "no_image.jpg" ,size: '50x50' %>
 							     <!--  -->
 							     <% end %>
 							</td>
